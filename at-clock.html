@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>ゲーム時計</title>
+<style type="text/css">
+body {
+  display: inline-block;
+  margin: 0px;
+}
+
+.root {
+  display: inline-block;
+  color: #fff;
+  background-color: #0008;
+  border-radius: 15px;
+  padding: 10px;
+  width: 280px;
+  height: 40px;
+  text-align: center;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+.root.loading {
+  opacity: 0;
+}
+
+.area {
+  display: inline-block;
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+.alert .area {
+  opacity: 0;
+}
+
+.area.at {
+  margin-left: 5px;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.time {
+  font-size: 30px;
+}
+
+.zero {
+  opacity: 0.25;
+}
+
+.notice {
+  line-height: 21px;
+  font-size: 16px;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 500ms;
+  text-align: left;
+  width: 260px;
+  height: 0px;
+  padding: 0px 12px;
+}
+
+.alert .notice {
+  opacity: 1;
+}
+</style>
+<script type="application/javascript">
+function writeActualTime( timezone = false ) {
+  // 現在時刻
+  let currentTime = new Date();
+  let offsetHours = Math.trunc( timezone === false ? new Date().getTimezoneOffset() / -60 : timezone );
+  let offsetMinutes = timezone === false ? -( new Date().getTimezoneOffset() ) % 60 : timezone % 1 * 60;
+  currentTime.setUTCHours( currentTime.getUTCHours() + offsetHours, currentTime.getUTCMinutes() + offsetMinutes );
+
+  // 描画
+  let newNode = document.createElement( 'span' );
+  newNode.classList.add( 'time' );
+  newNode.id = 'realtime';
+  if ( currentTime.getUTCHours() < 10 ) {
+    let zero = document.createElement( 'span' );
+    zero.classList.add( 'zero' );
+    zero.textContent = '0';
+    newNode.appendChild( zero );
+  }
+  newNode.appendChild( document.createTextNode( currentTime.getUTCHours().toString() + ':' + currentTime.getUTCMinutes().toString().padStart( 2, '0' ) ) );
+
+  let currentNode = document.getElementById( 'realtime' );
+  currentNode.replaceWith( newNode );
+
+  // 上の時点で描画上はcurrentNodeからnewNodeに置き換わったが、currentNodeは旧ノードを指し続けているので削除する
+  currentNode.remove();
+
+  // 次の処理
+  let nextTime = new Date( currentTime );
+  nextTime.setUTCMinutes( currentTime.getUTCMinutes() + 1, 0, 0 );
+  setTimeout( writeActualTime, nextTime.getTime() - currentTime.getTime(), timezone );
+}
+
+function writeAcceleratedTime( timezone = 0, speed = 1, resetTime = 0, resetDay = 0 ) {
+  // リセットに曜日を考慮する場合、曜日番号はISO 8601やJIS X 0301に基づき、
+  // 月曜日を1、火曜日を2…とし、日曜日を7としています。
+  // JavaScriptの曜日番号は日曜日が0でそれ以外は上記と同様なので、剰余で出せます。
+  // 0は計算に曜日を用いない場合として、falsyとして簡単に分岐できるようにするため、このような扱いにしました。
+
+  // 現実の現在時刻
+  let currentTime = new Date();
+  let offsetHours = Math.trunc( timezone );
+  let offsetMinutes = timezone % 1 * 60;
+  currentTime.setUTCHours( currentTime.getUTCHours() + offsetHours, currentTime.getUTCMinutes() + offsetMinutes );
+
+  // ゲーム内現在時刻
+  let baseTime = new Date( currentTime );
+  if ( resetDay ) {
+    let currentDay = baseTime.getUTCDay();
+    baseTime.setUTCDate( baseTime.getUTCDate() - ( currentDay < resetDay % 7 ? currentDay + 7 : currentDay ) + resetDay );
+  }
+  if ( baseTime.getTime() < baseTime.setUTCHours( resetTime, Math.round( resetTime % 1 * 60 ), 0, 0 ) ) {
+    baseTime.setUTCDate( baseTime.getUTCDate() - 1 );
+  }
+  let baseTimestamp = baseTime.getTime();
+  let calculatedTime = new Date( baseTimestamp + ( currentTime.getTime() - baseTimestamp ) * speed );
+
+  // 描画（ほぼコピペ）
+  let newNode = document.createElement( 'span' );
+  newNode.classList.add( 'time' );
+  newNode.id = 'gametime';
+  if ( calculatedTime.getUTCHours() < 10 ) {
+    let zero = document.createElement( 'span' );
+    zero.classList.add( 'zero' );
+    zero.textContent = '0';
+    newNode.appendChild( zero );
+  }
+  newNode.appendChild( document.createTextNode( calculatedTime.getUTCHours().toString() + ':' + calculatedTime.getUTCMinutes().toString().padStart( 2, '0' ) ) );
+
+  let currentNode = document.getElementById( 'gametime' );
+  currentNode.replaceWith( newNode );
+  currentNode.remove();
+
+  // 次の処理
+  let nextTime = new Date( calculatedTime );
+  nextTime.setUTCMinutes( calculatedTime.getUTCMinutes() + 1, 0, 0 );
+  setTimeout( writeAcceleratedTime, ( nextTime.getTime() - calculatedTime.getTime() ) / speed, timezone, speed, resetTime, resetDay );
+}
+
+window.addEventListener( 'load', function () {
+  // 上で書いたやつらを起動する
+  writeActualTime( 9 );
+  writeAcceleratedTime( 9, 20, 0, 0 );
+  // DQ10のアストルティア時間の場合、9, 20, 0, 0
+  // FF14のエオルゼア時間の場合、0, 144/7, 0, 4
+  document.getElementById( 'realtimezone' ).textContent = 'JST';
+  document.getElementById( 'gametimezone' ).textContent = 'AT';
+  document.getElementById( 'root' ).classList.remove( 'loading' );
+
+  // 初回読み込み時
+  if ( ! document.cookie ) {
+    document.cookie = 'session=on';
+    setTimeout( function () {
+      document.getElementById( 'root' ).classList.add( 'alert' );
+    }, 1000 );
+    setTimeout( function () {
+      document.getElementById( 'root' ).classList.remove( 'alert' );
+    }, 4000 );
+  }
+} );
+</script>
+</head>
+<body>
+<div id="root" class="root loading">
+<div class="notice">透過しない場合は、<br />ツール側でリロードしてください。</div>
+<div class="area jst">
+<span class="label" id="realtimezone">XXX</span>
+<span class="time" id="realtime"><span class="zero">00:00</span></span>
+</div>
+<div class="area at">
+<span class="label" id="gametimezone">XXX</span>
+<span class="time" id="gametime"><span class="zero">00:00</span></span>
+</div>
+</div>
+</body>
+</html>
