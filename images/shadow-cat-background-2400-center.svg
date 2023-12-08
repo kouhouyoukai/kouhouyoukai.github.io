@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-350 -200 450 450" width="2400" height="2400">
+<g stroke="#222" stroke-linecap="round" stroke-linejoin="round" stroke-width=".3">
+<rect x="-350" y="-200" width="450" height="260" fill="#ccb" stroke="none" />
+<g fill="#779">
+<path d="m18 37 a25 23 0 0 1 44 0" />
+<path d="m30 28 c-3 -4 -11 -9 -13 -9 -1 2 -1 13 0 20" />
+<path d="m50 28 c 3 -4 11 -9 13 -9 1 2 1 13 0 20" />
+<path d="m18 36 a25 22 0 1 0 44 0" />
+</g>
+<path d="m38 54 2 -2 2 2" fill="none" />
+<g fill="#fff">
+<ellipse cx="30" cy="44" rx="5" ry="6" />
+<ellipse cx="50" cy="44" rx="5" ry="6" />
+</g>
+<rect x="-350" y="60" width="450" height="190" fill="#aa9" stroke="none" />
+<path d="m-350 60 h450" fill="none" stroke-linecap="butt" />
+<g fill="#ccd">
+<ellipse cx="17" cy="58" rx="6" ry="5" />
+<ellipse cx="63" cy="58" rx="6" ry="5" />
+</g>
+</g>
+</svg>
