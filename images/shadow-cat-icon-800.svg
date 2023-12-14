@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="800" height="800">
 <g stroke="#222" stroke-linecap="round" stroke-linejoin="round" stroke-width=".3">
-<rect x="0" y="0" width="80" height="60" fill="#ccb" stroke="none" />
+<rect x="0" y="0" width="80" height="80" fill="#ccb" stroke="none" />
 <g fill="#779">
 <path d="m18 37 a25 23 0 0 1 44 0" />
 <path d="m30 28 c-3 -4 -11 -9 -13 -9 -1 2 -1 13 0 20" />
-<path d="m50 28 c 3 -4 11 -9 13 -9 1 2 1 13 0 20" />
+<path d="m50 28 c3 -4 11 -9 13 -9 1 2 1 13 0 20" />
 <path d="m18 36 a25 22 0 1 0 44 0" />
 </g>
 <path d="m38 54 2 -2 2 2" fill="none" />
