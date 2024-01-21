@@ -19,7 +19,7 @@
 <ellipse cx="63" cy="58" rx="6" ry="5" />
 </g>
 </g>
-<g fill="none" stroke="#000" stroke-linecap="square" stroke-width=".8" transform="translate(6.25e-6)">
+<g fill="none" stroke="#000" stroke-linecap="square" stroke-width=".8">
 <path d="m-273.5 18.98 c-0.4403 3.718 -0.9296 7.73 1.076 9.247 s5.235 -1.468 5.969 -2.104" />
 <path d="m-261 19.96 c0.8806 2.25 1.027 4.746 1.027 5.871" />
 <path d="m-252.3 20.35 c4.354 -1.81 8.611 -2.202 9.834 0.4403 1.223 2.642 -2.642 5.969 -4.941 6.947" />
