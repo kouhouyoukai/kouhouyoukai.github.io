@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" viewBox="0 0 180 180">
+<title>:igyo:</title>
+<g transform="scale(.5 1)" fill="none" stroke="#c08000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16">
+<g>
+<path d="m50 10 c-5 35 -40 70 -40 70" />
+<path d="m35 55 v115" />
+<path d="m75 20 h75 v30" />
+<path d="m105 10 -5 40" />
+<path d="m60 50 h110" />
+<path d="m80 70 v30" />
+<path d="m80 70 h70 v30" />
+<path d="m80 100 h70" />
+<path d="m70 120 h90" />
+<path d="m80 120 v30" />
+<path d="m60 150 h110" />
+<path d="m125 110 v60" />
+</g>
+<g>
+<path d="m250 10 v20" />
+<path d="m290 10 v20" />
+<path d="m210 10 10 20" />
+<path d="m330 10 -10 20" />
+<path d="m190 35 h160" />
+<path d="m230 35 10 35" />
+<path d="m310 35 -10 35" />
+<path d="m210 70 h120" />
+<path d="m210 100 h120" />
+<path d="m200 130 h140" />
+<path d="m270 70 v100" />
+<path d="m270 130 s-40 30 -80 40" />
+<path d="m270 130 s40 30 80 40" />
+</g>
+</g>
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<cc:license rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+<dc:title>:igyo:</dc:title>
+<dc:creator>
+<cc:Agent>
+<dc:title>@kouhouyoukai</dc:title>
+</cc:Agent>
+</dc:creator>
+<dc:subject>
+<rdf:Bag>
+<rdf:li>igyo 偉業 いぎょう</rdf:li>
+</rdf:Bag>
+</dc:subject>
+<dc:description>「偉業」のカスタム絵文字です。フォントのライセンス問題に悩まされないよう、フォントを用いずに1から起こしました。</dc:description>
+</cc:Work>
+<cc:License rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+<cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction" />
+<cc:permits rdf:resource="http://creativecommons.org/ns#Distribution" />
+<cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+</cc:License>
+</rdf:RDF>
+</metadata>
+</svg>
