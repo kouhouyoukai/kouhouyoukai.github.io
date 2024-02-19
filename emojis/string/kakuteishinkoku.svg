@@ -5,10 +5,10 @@
 path {
   stroke-width: 8;
   fill: none;
-  stroke: #0080ff;
+  stroke: #0090ff;
 }
 path.fill {
-  fill: #0080ff;
+  fill: #0090ff;
   stroke: none;
 }
 </style>
